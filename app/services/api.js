@@ -18,7 +18,6 @@ export const searchApi = {
             });        
             const topics = completion.choices[0].message.content;
             const parsedTopics = JSON.parse(topics);
-            console.log(parsedTopics);
             return parsedTopics;
           } catch (error) {
             console.error("Error fetching trending topics:", error);

@@ -26,8 +26,8 @@ export default function Index() {
 
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      <main className="flex justify-center">
+    <div className="flex flex-col min-h-screen bg-background overflow-y-auto">
+      <main className="flex justify-center overflow-hidden">
         <div className="flex flex-col self-center mt-[10rem]">
           {status === 'loading' && <LoadingSpinner/>}
           {status === 'idle' && 

@@ -56,7 +56,7 @@ const handleClickCard = async (value) => {
                 />
                 ))
             ) : (
-                <p>No results found</p>
+                <LoadingSpinner />
             )}
         </div>
       </main>

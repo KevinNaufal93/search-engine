@@ -10,6 +10,7 @@ const dispatch = useDispatch();
 const results = useSelector((state) => state.search.results);
 const [gradientStart, setGradientStart] = useState('');
 const [gradientEnd, setGradientEnd] = useState('');
+const [fontColor, setFontColor] = useState('');
 
 useEffect(() => {
     dispatch(setInitialValue())
@@ -17,14 +18,17 @@ useEffect(() => {
         case results.metric === "Positive":
             setGradientStart('from-green-500')
             setGradientEnd('to-green-950')
+            setFontColor(`text-red-950`)
             break;
         case results.metric === "Negative":
             setGradientStart('from-red-500')
             setGradientEnd('to-red-950')
+            setFontColor(`text-white`)
             break;
         case results.metric === "Neutral":
-            setGradientStart('from-blue-500')
-            setGradientEnd('to-purple-600')
+            setGradientStart('from-yellow-500')
+            setGradientEnd('to-yellow-950')
+            setFontColor(`text-red-950`)
             break;
         default:
             break;
@@ -39,7 +43,7 @@ useEffect(() => {
             {!results? (
                 <p>No results found</p>
             ) : (
-                <AnimatedCircle content={results.content} gradientStart={gradientStart} gradientEnd={gradientEnd} />
+                <AnimatedCircle content={results.content} gradientStart={gradientStart} gradientEnd={gradientEnd} fontColor={fontColor} />
             )}
             </div>
         </div>

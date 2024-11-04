@@ -1,6 +1,6 @@
 import React, { useState, useEffect  } from 'react';
 
-const AnimatedCircle = ({content, gradientStart, gradientEnd }) => {
+const AnimatedCircle = ({content, gradientStart, gradientEnd, fontColor }) => {
 
     const [isSpinning, setIsSpinning] = useState(false);
     useEffect(() => {
@@ -61,8 +61,8 @@ const AnimatedCircle = ({content, gradientStart, gradientEnd }) => {
             }
             `}
         </style>
-        <div className="absolute inset-0 w-full h-full flex items-center justify-center text-red-950 font-bold">
-          <p className="transform transition-transform duration-500 group-hover:-rotate-y-16 p-4 text-center text-sm">
+        <div className="absolute inset-0 w-full h-full flex items-center justify-center font-bold">
+          <p className={`transform transition-transform duration-500 group-hover:-rotate-y-16 p-4 text-center text-sm ${isSpinning ? 'text-black' : fontColor}`}>
             {isSpinning ? 'Loading Sentiment' : content}
           </p>
         </div>

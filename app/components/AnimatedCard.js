@@ -7,7 +7,7 @@ const AnimatedCard = ({idx, text, sentiment, onClick}) => {
         relative
         w-64
         h-40
-        ${sentiment === "Positive" ? 'bg-green-950' : sentiment === "Neutral" ? 'bg-white' : 'bg-red-950'}
+        ${sentiment === "Positive" ? 'bg-green-950' : sentiment === "Neutral" ? 'bg-yellow-500' : 'bg-red-950'}
         rounded-xl
         shadow-xl
         cursor-pointer

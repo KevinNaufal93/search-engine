@@ -11,31 +11,29 @@ import { useEffect } from 'react';
 
 export default function Index() {
 
-  const results = useSelector((state) => state.search.results);
   const status = useSelector((state) => state.search.status);
   const error = useSelector((state) => state.search.error);
+  const action = useSelector((state) => state.search.currentAction)
 
   const router = useRouter();
   useEffect(() => {
-    const path = router.pathname;
-    if (status === 'succeeded' && path !== '/searchResult') {
+    if (status === 'succeeded' && action === 'search') {
       router.push('/searchResult');
+    } else if (status === 'succeeded' && action === 'generate') {
+      router.push('/shuffle');
     }
   }, [status, router]);
 
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-svh bg-background">
+    <div className="flex flex-col min-h-screen bg-background">
       <main className="flex justify-center">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col self-center mt-[10rem]">
           {status === 'loading' && <LoadingSpinner/>}
           {status === 'idle' && 
             <>
-              <h1 className="text-3xl font-bold py-2 mb-8">Search your favourite topics here!</h1>
+              <h1 className="text-[4rem] font-bold py-2 mb-8 text-center">Analyze your favourite topics here!</h1>
               <SearchBar />
-              <h2 className="my-16">Or</h2>
-              <h1 className="text-3xl font-bold py-2 mb-8">Browse through random topics instead</h1>
-              <div className="p-4 bg-foreground rounded-xl">Feeling awesome today!</div>
             </>
           }
           {status === 'failed' && <ErrorMessage message={error} /> }

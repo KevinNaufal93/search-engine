@@ -3,7 +3,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { setInitialValue } from '../lib/features/searchSlice'
-import AnimatedCard from '../components/AnimatedCard';
+import AnimatedCircle from '../components/AnimatedCircle';
 
 export default function SearchResult() {
 const dispatch = useDispatch();
@@ -39,10 +39,7 @@ useEffect(() => {
             {!results? (
                 <p>No results found</p>
             ) : (
-                // <div className={`${cardColor} py-2 px-4 rounded-full`}>
-                //     <p className={`${textColor} text-center`}>{results.content}</p>
-                // </div>
-                <AnimatedCard content={results.content} gradientStart={gradientStart} gradientEnd={gradientEnd} />
+                <AnimatedCircle content={results.content} gradientStart={gradientStart} gradientEnd={gradientEnd} />
             )}
             </div>
         </div>

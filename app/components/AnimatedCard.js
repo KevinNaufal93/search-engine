@@ -1,69 +1,52 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const AnimatedCard = ({content, gradientStart, gradientEnd}) => {
-
-    const [isSpinning, setIsSpinning] = useState(false);
-
-    const handleClick = () => {
-      if (!isSpinning) {
-        setIsSpinning(true);
-        setTimeout(() => setIsSpinning(false), 3000);
-      }
-    };
-
+const AnimatedCard = ({idx, text, sentiment, onClick}) => {
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div 
-        onClick={handleClick}
-        className={`
-          relative
-          w-96
-          h-96
-          bg-gradient-to-br
-          ${gradientStart}
-          ${isSpinning ? `to-black` : gradientEnd}
-          ${isSpinning ? `rounded-full` : `rounded-xl`}
-          shadow-xl
-          cursor-pointer
-          transition-transform
-          duration-500
-          hover:scale-105
-          transform
-          perspective-1000
-          hover:rotate-y-12
-          group
-          ${isSpinning ? 'animate-[spin_3s_linear]' : ''}
-        `}
-        style={{
-            "@keyframes spin": {
-              "from": {
-                transform: "rotate(0deg)"
-              },
-              "to": {
-                transform: "rotate(360deg)"
-              }
-            }
-        }}
-      >
-        <style>
-            {`@keyframes spin {
-                from {
-                transform: rotate(0deg);
-                }
-                to {
-                transform: rotate(360deg);
-                }
-            }
-            `}
-        </style>
-        <div className="absolute inset-0 w-full h-full flex items-center justify-center text-white text-2xl font-bold">
-          <p className="transform transition-transform duration-500 group-hover:-rotate-y-12 px-4 py-1 text-center text-sm">
-            {isSpinning ? 'Wheee!' : content}
-          </p>
-        </div>
+    <div
+      className={`
+        relative
+        w-64
+        h-40
+        ${sentiment === "Positive" ? 'bg-green-950' : sentiment === "Neutral" ? 'bg-white' : 'bg-red-950'}
+        rounded-xl
+        shadow-xl
+        cursor-pointer
+        transition-all
+        duration-1000
+        ease-in-out
+        transform
+        hover:scale-150
+        ${idx % 2 === 0 ? 'origin-bottom-right' : 'origin-bottom-left'}
+        ${idx % 2 === 0 ? 'animate-[spin-in-right_2s_ease-in-out_forwards]' : 'animate-[spin-in-left_2s_ease-in-out_forwards]'}
+      `}
+      onClick={() => onClick(text)}
+    >
+      <style>{`
+        @keyframes spin-in-left {
+          0% {
+            transform: translateX(-100%) translateY(100%) rotate(-360deg);
+          }
+          100% {
+            transform: translateX(0%) translateY(0%) rotate(0deg);
+          }
+        }
+        @keyframes spin-in-right {
+          0% {
+            transform: translateX(100%) translateY(100%) rotate(360deg);
+          }
+          100% {
+            transform: translateX(0%) translateY(0%) rotate(0deg);
+          }
+        }
+      `}</style>
+
+      <div className="absolute inset-0 w-full h-full flex items-center justify-center font-bold hover:scale-100 text-center rounded-xl hover:bg-gradient-to-br hover:from-purple-600 hover:to-blue-500">
+        <p className={`p-4 text-xl ${sentiment === "Neutral" ? 'text-black' : 'text-white'} hover:text-red-950`}>{text}</p>
       </div>
     </div>
   );
 };
+
+
 
 export default AnimatedCard;

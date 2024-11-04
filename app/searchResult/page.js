@@ -3,27 +3,28 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { setInitialValue } from '../lib/features/searchSlice'
+import AnimatedCard from '../components/AnimatedCard';
 
 export default function SearchResult() {
 const dispatch = useDispatch();
 const results = useSelector((state) => state.search.results);
-const [cardColor, setCardColor] = useState('');
-const [textColor, setTextColor] = useState('');
+const [gradientStart, setGradientStart] = useState('');
+const [gradientEnd, setGradientEnd] = useState('');
 
 useEffect(() => {
     dispatch(setInitialValue())
     switch (true) {
         case results.metric === "Positive":
-            setCardColor('bg-green-950')
-            setTextColor('text-white')
+            setGradientStart('from-green-500')
+            setGradientEnd('to-green-950')
             break;
         case results.metric === "Negative":
-            setCardColor('bg-red-950')
-            setTextColor('text-white')
+            setGradientStart('from-red-500')
+            setGradientEnd('to-red-950')
             break;
         case results.metric === "Neutral":
-            setCardColor('bg-white')
-            setTextColor('text-black')
+            setGradientStart('from-blue-500')
+            setGradientEnd('to-purple-600')
             break;
         default:
             break;
@@ -34,14 +35,14 @@ useEffect(() => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-background">
       <main className="flex justify-center">
         <div className="flex flex-col items-center">
-            <h1 className="flex text-3xl font-bold py-2 mb-8">Search result for:</h1>
             <div className="flex flex-col items-center px-8">
             {!results? (
                 <p>No results found</p>
             ) : (
-                <div className={`${cardColor} py-2 px-4 rounded-full`}>
-                    <p className={`${textColor} text-center`}>{results.content}</p>
-                </div>
+                // <div className={`${cardColor} py-2 px-4 rounded-full`}>
+                //     <p className={`${textColor} text-center`}>{results.content}</p>
+                // </div>
+                <AnimatedCard content={results.content} gradientStart={gradientStart} gradientEnd={gradientEnd} />
             )}
             </div>
         </div>

@@ -21,7 +21,7 @@ const SearchBar = () => {
   return (
     <div className='flex flex-col items-center '>
       <input 
-        className="flex w-[40vh] bg-background py-2 rounded-lg text-center" 
+        className="flex w-[40vh] bg-colorSet2 py-2 rounded-lg text-center placeholder-black text-black" 
         placeholder="Type here & press enter!" 
         onKeyDown={handleKeyDown}
         value={value}

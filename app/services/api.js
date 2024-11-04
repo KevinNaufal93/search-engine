@@ -4,8 +4,6 @@ const configuration = {
     apiKey:process.env.OPENAI_API_KEY, dangerouslyAllowBrowser: true
 }
 
-console.log(process.env, process.env.OPENAI_API_KEY);
-
 export const searchApi = {
 
     searchTrendingTopic: async (topic) => {

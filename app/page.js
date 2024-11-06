@@ -32,7 +32,7 @@ export default function Index() {
           {status === 'loading' && <LoadingSpinner/>}
           {status === 'idle' && 
             <>
-              <h1 className="text-[4rem] font-bold py-2 mb-8 text-center">Analyze your favourite topics here!</h1>
+              <h1 className="text-[4rem] font-bold py-2 mb-8 text-colorSet2 text-center">Analyze your favourite topics here!</h1>
               <SearchBar />
             </>
           }
